@@ -4,61 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O2 | Evaluations</title>
+    <title>O2 | Advising</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            border-bottom: 2px solid #E5E7EB;
-            margin-bottom: 2rem;
-        }
-
-        .tab {
-            padding: 0.75rem 0;
-            cursor: pointer;
-            color: var(--text-muted);
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .eval-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--warning);
-        }
-
-        .eval-card.completed {
-            border-left-color: var(--success);
-            opacity: 0.8;
-        }
-
-        .eval-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .due-date {
-            font-size: 0.8rem;
-            color: #DC2626;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-    </style>
 </head>
 
 <body class="dashboard-body">
@@ -99,7 +50,7 @@
                 </svg>
                 Schedule
             </a>
-            <a href="advising.html" class="nav-item">
+            <a href="advising.html" class="nav-item active">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                     <circle cx="9" cy="7" r="4"></circle>
@@ -117,7 +68,7 @@
             </a>
 
             <div class="nav-label">Academic</div>
-            <a href="evaluations.html" class="nav-item active">
+            <a href="evaluations.html" class="nav-item">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
@@ -148,43 +99,31 @@
     <div class="main-content">
         <header>
             <div class="page-title">
-                <h1>Evaluations</h1>
-                <p>You have 2 pending evaluations.</p>
+                <h1>Advising</h1>
+                <p>Manage your academic path and schedule appointments.</p>
             </div>
+            <button class="top-action-btn">
+                Book Appointment
+            </button>
         </header>
 
-        <div class="tabs">
-            <div class="tab active">Pending (2)</div>
-            <div class="tab">Completed (10)</div>
-        </div>
-
-        <div class="eval-list">
-            <div class="eval-card">
-                <div class="eval-header">
-                    <h3>Dr. Sarah Connor - Attending</h3>
-                    <span class="due-date">Due Tomorrow</span>
-                </div>
-                <p style="color:var(--text-muted); margin-bottom:1rem">Internal Medicine Rotation • Week 4</p>
-                <button class="btn" style="width: auto; margin:0; padding: 0.5rem 1.5rem">Start Evaluation</button>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">My Advisors</div>
             </div>
-
-            <div class="eval-card">
-                <div class="eval-header">
-                    <h3>Course Eval: MODU-8201</h3>
-                    <span class="due-date">Due in 5 days</span>
+            <div class="schedule-list">
+                <div class="schedule-item">
+                    <div class="event-details">
+                        <h4>Dr. David Davies</h4>
+                        <p>Basic Science House Advisor</p>
+                    </div>
                 </div>
-                <p style="color:var(--text-muted); margin-bottom:1rem">End of Rotation Survey</p>
-                <button class="btn" style="width: auto; margin:0; padding: 0.5rem 1.5rem">Start Evaluation</button>
-            </div>
-
-            <h3 style="margin-top:2rem; margin-bottom:1rem; color:var(--text-muted)">Recently Completed</h3>
-
-            <div class="eval-card completed">
-                <div class="eval-header">
-                    <h3>Dr. James Smith - Resident</h3>
-                    <span style="color:green; font-weight:700; font-size:0.8rem">SUBMITTED</span>
+                <div class="schedule-item">
+                    <div class="event-details">
+                        <h4>Dr. Sheena CarlLee</h4>
+                        <p>Clinical House Advisor</p>
+                    </div>
                 </div>
-                <p style="color:var(--text-muted);">Family Medicine Rotation</p>
             </div>
         </div>
 

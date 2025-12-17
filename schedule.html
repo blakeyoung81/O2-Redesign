@@ -103,6 +103,15 @@
                 </svg>
                 Schedule
             </a>
+            <a href="advising.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Advising
+            </a>
             <a href="catalog.html" class="nav-item">
                 <svg class="nav-icon" viewBox="0 0 24 24">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -144,7 +153,7 @@
         <header>
             <div class="page-title">
                 <h1>Full Schedule</h1>
-                <p>May 2025</p>
+                <p>Blake Daniel Young's M3 Schedule for 2025-2026</p>
             </div>
             <button class="top-action-btn">
                 Export to Calendar
@@ -152,6 +161,18 @@
         </header>
 
         <div class="card">
+            <!-- Filters -->
+            <div
+                style="padding-bottom: 2rem; border-bottom:1px solid var(--border); margin-bottom: 2rem; display:flex; gap: 20px; align-items:center;">
+                <span
+                    style="font-weight:700; font-size:0.9rem; color:var(--text-muted); text-transform:uppercase">Filters:</span>
+                <label style="display:flex; align-items:center; gap:8px"><input type="checkbox" checked> M3
+                    Courses</label>
+                <label style="display:flex; align-items:center; gap:8px"><input type="checkbox"> M1 Courses</label>
+                <label style="display:flex; align-items:center; gap:8px"><input type="checkbox"> M2 Courses</label>
+                <label style="display:flex; align-items:center; gap:8px"><input type="checkbox"> Academic Houses</label>
+            </div>
+
             <div class="calendar-grid">
                 <div class="cal-header">Mon</div>
                 <div class="cal-header">Tue</div>
