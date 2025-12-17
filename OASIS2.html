@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O2 | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #860000;
+      --primary-dark: #600000;
+      --primary-light: #fff0f0;
+      --text-main: #111827;
+      --text-secondary: #4b5563;
+      --bg-body: #f9fafb;
+      --bg-card: #ffffff;
+      --border: #e5e7eb;
+      --sidebar-width: 260px;
+      --header-height: 64px;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-card);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      z-index: 10;
+    }
+
+    .logo-area {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: var(--text-main);
+      margin-left: 6px;
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+
+    .nav {
+      padding: 1.5rem 1rem;
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav-item:hover {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .nav-item.active {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      background-color: currentColor;
+      -webkit-mask-image: var(--icon);
+      mask-image: var(--icon);
+    }
+
+    .user-profile {
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .user-info div:first-child {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .user-info div:last-child {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 2rem;
+      max-width: 1600px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-title h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .page-title p {
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .top-actions button {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .top-actions button:hover {
+      background: #fdfdfd;
+      border-color: #d1d5db;
+    }
+
+    /* Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .card-action {
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Schedule Table */
+    .schedule-container {
+      overflow-x: auto;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+
+    .date-badge {
+      background: var(--bg-body);
+      padding: 0.5rem;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 60px;
+      margin-right: 1rem;
+    }
+
+    .date-badge .mo {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .date-badge .day {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .event-details h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .event-details p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .status-badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 99px;
+      font-weight: 600;
+    }
+
+    .status-locked {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Red */
+    .status-active {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    /* Green */
+
+    /* Notice & Stats */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .notice-list {
+      list-style: none;
+    }
+
+    .notice-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 0.9rem;
+    }
+
+    .notice-item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .notice-item .date {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-area">
+      <div class="logo-text">O2 <span>Student</span></div>
+    </div>
+
+    <nav class="nav">
+      <a href="#" class="nav-item active">Dashboard</a>
+      <a href="#" class="nav-item">Schedule</a>
+      <a href="#" class="nav-item">Course Catalog</a>
+      <a href="#" class="nav-item">Evaluations</a>
+      <a href="#" class="nav-item">Grades</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">BY</div>
+      <div class="user-info">
+        <div>Blake Young</div>
+        <div>Class of 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main-content">
+    <header>
+      <div class="page-title">
+        <h1>Welcome back, Blake</h1>
+        <p>Here's what's happening in your M3 Schedule today.</p>
+      </div>
+      <div class="top-actions">
+        <button onclick="alert('Notices cleared')">Clear Notices</button>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+
+      <!-- Left Col: Schedule -->
+      <div class="left-col">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Current Course Grid 2025-2026</div>
+            <a href="#" class="card-action">View Full Calendar</a>
+          </div>
+
+          <div class="schedule-container">
+            <!-- Item 1 -->
+            <div class="schedule-item">
+              <div class="date-badge">
+                <div class="mo">May</div>
+                <div class="day">19</div>
+              </div>
+              <div class="event-details">
+                <h4>MODU-8302: Core Modules</h4>
+                <p>Transition to Clerkships • UAMS Northwest Campus</p>
+              </div>
+              <span class="status-badge status-active">In Progress</span>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="schedule-item">
+              <div class="date-badge">
+                <div class="mo">Jun</div>
+                <div class="day">02</div>
+              </div>
+              <div class="event-details">
+                <h4>HOUS-8004: Academic Houses</h4>
+                <p>Compton House • UAMS Northwest Campus</p>
+              </div>
+              <span class="status-badge status-locked">Locked</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="schedule-item">
+              <div class="date-badge">
+                <div class="mo">Sep</div>
+                <div class="day">06</div>
+              </div>
+              <div class="event-details">
+                <h4>MODU-83551: Core Modules</h4>
+                <p>Practice of Medicine 3 - Part 1</p>
+              </div>
+              <span class="status-badge status-locked">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Col: Stats & Notices -->
+      <div class="right-col">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Academic Overview</div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-val">3.8</div>
+              <div class="stat-label">Term GPA</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">23</div>
+              <div class="stat-label">Credits</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">M3</div>
+              <div class="stat-label">Current Year</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">12</div>
+              <div class="stat-label">Pending Evals</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Notices</div>
+          </div>
+          <ul class="notice-list">
+            <li class="notice-item">
+              <span class="date">Today</span><br>
+              <a href="#">Requirement Checklist updated</a>
+            </li>
+            <li class="notice-item">
+              <span class="date">Yesterday</span><br>
+              <a href="#">New grade posted for MODU-8302</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
