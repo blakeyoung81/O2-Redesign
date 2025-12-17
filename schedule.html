@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O2 | Schedule</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cal-header {
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .cal-day {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            min-height: 120px;
+            padding: 0.5rem;
+            position: relative;
+        }
+
+        .cal-num {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .cal-event {
+            font-size: 0.75rem;
+            padding: 4px;
+            border-radius: 4px;
+            background: #EFF6FF;
+            color: #1D4ED8;
+            margin-bottom: 4px;
+            border-left: 2px solid #3B82F6;
+        }
+
+        .cal-event.red {
+            background: #FEF2F2;
+            color: #B91C1C;
+            border-left-color: #EF4444;
+        }
+
+        .cal-empty {
+            background: transparent;
+            border: none;
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+
+    <div class="sidebar-overlay"></div>
+    <button class="mobile-menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-area">
+            <div class="logo-text">O2 <div class="logo-dot"></div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <div class="nav-label">Main Menu</div>
+            <a href="OASIS2.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Dashboard
+            </a>
+            <a href="schedule.html" class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Schedule
+            </a>
+            <a href="catalog.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                Course Catalog
+            </a>
+
+            <div class="nav-label">Academic</div>
+            <a href="evaluations.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Evaluations
+            </a>
+            <a href="grades.html" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                Grades
+            </a>
+        </nav>
+
+        <div class="user-profile">
+            <div class="avatar">BY</div>
+            <div class="user-info">
+                <div>Blake Young</div>
+                <div>Class of 2026</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="main-content">
+        <header>
+            <div class="page-title">
+                <h1>Full Schedule</h1>
+                <p>May 2025</p>
+            </div>
+            <button class="top-action-btn">
+                Export to Calendar
+            </button>
+        </header>
+
+        <div class="card">
+            <div class="calendar-grid">
+                <div class="cal-header">Mon</div>
+                <div class="cal-header">Tue</div>
+                <div class="cal-header">Wed</div>
+                <div class="cal-header">Thu</div>
+                <div class="cal-header">Fri</div>
+                <div class="cal-header">Sat</div>
+                <div class="cal-header">Sun</div>
+
+                <!-- Week 1 -->
+                <div class="cal-day cal-empty"></div>
+                <div class="cal-day cal-empty"></div>
+                <div class="cal-day cal-empty"></div>
+                <div class="cal-day">
+                    <div class="cal-num">1</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">2</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">3</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">4</div>
+                </div>
+
+                <!-- Week 2 -->
+                <div class="cal-day">
+                    <div class="cal-num">5</div>
+                    <div class="cal-event">Internal Med Rotation</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">6</div>
+                    <div class="cal-event">Internal Med Rotation</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">7</div>
+                    <div class="cal-event">Internal Med Rotation</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">8</div>
+                    <div class="cal-event">Internal Med Rotation</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">9</div>
+                    <div class="cal-event">Internal Med Rotation</div>
+                    <div class="cal-event red">Exam Day</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">10</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">11</div>
+                </div>
+
+                <!-- Week 3 (Starts transition from ss) -->
+                <div class="cal-day">
+                    <div class="cal-num">12</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">13</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">14</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">15</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">16</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">17</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">18</div>
+                </div>
+
+                <!-- Week 4 -->
+                <div class="cal-day">
+                    <div class="cal-num">19</div>
+                    <div class="cal-event">MODU-8302 Start</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">20</div>
+                    <div class="cal-event">Core Modules</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">21</div>
+                    <div class="cal-event">Core Modules</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">22</div>
+                    <div class="cal-event">Core Modules</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">23</div>
+                    <div class="cal-event">Core Modules</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">24</div>
+                </div>
+                <div class="cal-day">
+                    <div class="cal-num">25</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
